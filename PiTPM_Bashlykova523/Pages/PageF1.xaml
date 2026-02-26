@@ -36,9 +36,9 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Top">
-                    <TextBox x:Name="xEnterTB" FontSize="17" Height="30" Margin="0,19,0,6"/>
-                    <TextBox x:Name="yEnterTB" FontSize="17" Height="30" Margin="0,2,0,6"/>
-                    <TextBox x:Name="zEnterTB" FontSize="17" Height="30" Margin="0,2,0,6"/>
+                    <TextBox x:Name="xEnterTB" FontSize="17" Height="30" Margin="0,19,0,6" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput"/>
+                    <TextBox x:Name="yEnterTB" FontSize="17" Height="30" Margin="0,2,0,6" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput"/>
+                    <TextBox x:Name="zEnterTB" FontSize="17" Height="30" Margin="0,2,0,6" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput"/>
                     <TextBox x:Name="ansTB" FontSize="17" Height="33" Width="160" Margin="0,20,0,0" IsReadOnly="True"/>
                 </StackPanel>
 

@@ -23,6 +23,7 @@ namespace PiTPM_Bashlykova523.Pages
         public PageF1()
         {
             InitializeComponent();
+            buttonEnabled();
         }
 
         private void nextFuncBtn_Click(object sender, RoutedEventArgs e)
@@ -30,9 +31,38 @@ namespace PiTPM_Bashlykova523.Pages
             NavigationService.Navigate(new PageF2());
         }
 
+        private void buttonEnabled()
+        {
+            if (string.IsNullOrWhiteSpace(xEnterTB.Text) || string.IsNullOrWhiteSpace(yEnterTB.Text) || string.IsNullOrWhiteSpace(zEnterTB.Text))
+            {
+                countBtn.IsEnabled = false;
+                clearBtn.IsEnabled = false;
+            }
+            else
+            {
+                countBtn.IsEnabled = true;
+                clearBtn.IsEnabled = true;
+            }
+        }
+
+        private void EnterTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            buttonEnabled();
+        }
+
+        private void EnterTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.Text[0]);
+        }
+
         private void countBtn_Click(object sender, RoutedEventArgs e)
         {
+            double x = Convert.ToDouble(xEnterTB.Text);
+            double y = Convert.ToDouble(yEnterTB.Text);
+            double z = Convert.ToDouble(zEnterTB.Text);
 
+            double ans = Math.Sqrt(10 * (Math.Pow(x, 1 / 3) + Math.Pow(x, y + 2))) * (Math.Pow(Math.Asin(z), 2) - Math.Abs(x - y));
+            ansTB.Text = ans.ToString();
         }
 
         private void clearBtn_Click(object sender, RoutedEventArgs e)
