@@ -67,10 +67,10 @@ namespace PiTPM_Bashlykova523.Pages
 
         private void clearBtn_Click(object sender, RoutedEventArgs e)
         {
-            xEnterTB.Text = " ";
-            yEnterTB.Text = " ";
-            zEnterTB.Text = " ";
-            ansTB.Text = " ";
+            xEnterTB.Text = "";
+            yEnterTB.Text = "";
+            zEnterTB.Text = "";
+            ansTB.Text = "";
         }
     }
 }

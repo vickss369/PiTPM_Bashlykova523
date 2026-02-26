@@ -36,14 +36,14 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Top">
-                    <TextBox x:Name="xEnterTB" FontSize="17" Height="30" Margin="0,15,0,6"/>
-                    <TextBox x:Name="bEnterTB" FontSize="17" Height="30" Margin="0,4,0,6"/>
+                    <TextBox x:Name="xEnterTB" FontSize="17" Height="30" Margin="0,15,0,6" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput"/>
+                    <TextBox x:Name="bEnterTB" FontSize="17" Height="30" Margin="0,4,0,6" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput"/>
 
                     <Border Padding="6" Background="#EED5D2" BorderBrush="#3A2119" BorderThickness="1" CornerRadius="5" Margin="0,15,0,6">
                         <StackPanel>
-                            <RadioButton x:Name="shFuncRB" Content="sh(x)" FontSize="16" Foreground="#442D1C" Margin="0,2"/>
-                            <RadioButton x:Name="x2FuncRB" Content="x²" FontSize="16" Foreground="#442D1C" Margin="0,2"/>
-                            <RadioButton x:Name="exFuncRB" Content="eˣ" FontSize="16" Foreground="#442D1C" Margin="0,2"/>
+                            <RadioButton x:Name="shFuncRB" Content="sh(x)" FontSize="16" Foreground="#442D1C" Margin="0,2" Checked="FuncRB_Checked"/>
+                            <RadioButton x:Name="x2FuncRB" Content="x²" FontSize="16" Foreground="#442D1C" Margin="0,2" Checked="FuncRB_Checked"/>
+                            <RadioButton x:Name="exFuncRB" Content="eˣ" FontSize="16" Foreground="#442D1C" Margin="0,2" Checked="FuncRB_Checked"/>
                         </StackPanel>
                     </Border>
 
