@@ -10,9 +10,15 @@
       Title="PageF3">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
         <TextBlock Text="Функция №3" FontSize="21" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#442D1C" Margin="0,25,0,0"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="backBtn" Content="Назад" FontSize="17" Height="50" Width="110" HorizontalAlignment="Center" Background="#A2676C" Foreground="#D9CBC2" Click="backBtn_Click"/>
-        </StackPanel>
+        <Image Grid.Row="1" Source="/Images/func3.png" Stretch="Uniform" Width="400" Height="100" HorizontalAlignment="Center" Margin="0,0,0,8" ToolTip="Математическая формула функции"/>
+        <Button Grid.Row="2" x:Name="backBtn" Content="Назад" FontSize="17" Height="50" Width="110" HorizontalAlignment="Center" Background="#A2676C" Foreground="#D9CBC2" Click="backBtn_Click"/>
     </Grid>
 </Page>

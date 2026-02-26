@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="Функция №2" FontSize="21" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#442D1C" Margin="0,18,0,6"/>
-        <Image Grid.Row="1" Source="/Images/func2.png" Stretch="Uniform" Width="480" Height="130" HorizontalAlignment="Center" Margin="0,0,0,8"/>
+        <Image Grid.Row="1" Source="/Images/func2.png" Stretch="Uniform" Width="480" Height="130" HorizontalAlignment="Center" Margin="0,0,0,8" ToolTip="Математическая формула кусочно-заданной функции"/>
 
         <Border Grid.Row="2" Padding="10" Margin="40,0" CornerRadius="6" Background="#F7F2EE" BorderBrush="#3A2119" BorderThickness="2">
             <Grid>
@@ -36,30 +36,30 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Top">
-                    <TextBox x:Name="xEnterTB" FontSize="17" Height="30" Margin="0,15,0,6" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput"/>
-                    <TextBox x:Name="bEnterTB" FontSize="17" Height="30" Margin="0,4,0,6" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput"/>
+                    <TextBox x:Name="xEnterTB" FontSize="17" Height="30" Margin="0,15,0,6" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput" ToolTip="Введите значение переменной x"/>
+                    <TextBox x:Name="bEnterTB" FontSize="17" Height="30" Margin="0,4,0,6" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput" ToolTip="Введите значение переменной b"/>
 
-                    <Border Padding="6" Background="#EED5D2" BorderBrush="#3A2119" BorderThickness="1" CornerRadius="5" Margin="0,15,0,6">
+                    <Border Padding="6" Background="#EED5D2" BorderBrush="#3A2119" BorderThickness="1" CornerRadius="5" Margin="0,15,0,6" ToolTip="Выберите функцию f(x) для вычисления">
                         <StackPanel>
-                            <RadioButton x:Name="shFuncRB" Content="sh(x)" FontSize="16" Foreground="#442D1C" Margin="0,2" Checked="FuncRB_Checked"/>
-                            <RadioButton x:Name="x2FuncRB" Content="x²" FontSize="16" Foreground="#442D1C" Margin="0,2" Checked="FuncRB_Checked"/>
-                            <RadioButton x:Name="exFuncRB" Content="eˣ" FontSize="16" Foreground="#442D1C" Margin="0,2" Checked="FuncRB_Checked"/>
+                            <RadioButton x:Name="shFuncRB" Content="sh(x)" FontSize="16" Foreground="#442D1C" Margin="0,2" Width="70" HorizontalAlignment="Left" Checked="FuncRB_Checked" ToolTip="Гиперболический синус угла x"/>
+                            <RadioButton x:Name="x2FuncRB" Content="x²" FontSize="16" Foreground="#442D1C" Margin="0,2" Width="70" HorizontalAlignment="Left" Checked="FuncRB_Checked" ToolTip="x в квадрате"/>
+                            <RadioButton x:Name="exFuncRB" Content="eˣ" FontSize="16" Foreground="#442D1C" Margin="0,2" Width="70" HorizontalAlignment="Left" Checked="FuncRB_Checked" ToolTip="Экспонента в степени x"/>
                         </StackPanel>
                     </Border>
 
-                    <TextBox x:Name="ansTB" FontSize="17" Height="34" Margin="0,30,0,0" IsReadOnly="True"/>
+                    <TextBox x:Name="ansTB" FontSize="17" Height="34" Margin="0,30,0,0" IsReadOnly="True" ToolTip="Результат вычисления функции"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" VerticalAlignment="Top" Margin="30,40,0,0">
-                    <Button x:Name="countBtn" Content="Вычислить" FontSize="16" Height="45" Width="120" Margin="0,40,0,55" Background="#64854C" Foreground="#D9CBC2" Click="countBtn_Click"/>
-                    <Button x:Name="clearBtn" Content="Очистить" FontSize="16" Height="45" Width="120" Background="#6B212C" Foreground="#D9CBC2" Click="clearBtn_Click"/>
+                    <Button x:Name="countBtn" Content="Вычислить" FontSize="16" Height="45" Width="120" Margin="0,40,0,55" Background="#64854C" Foreground="#D9CBC2" Click="countBtn_Click" ToolTip="Вычислить значение функции"/>
+                    <Button x:Name="clearBtn" Content="Очистить" FontSize="16" Height="45" Width="120" Background="#6B212C" Foreground="#D9CBC2" Click="clearBtn_Click" ToolTip="Очистить поля и сбросить выбор функции"/>
                 </StackPanel>
             </Grid>
         </Border>
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
-            <Button x:Name="backBtn" Content="Назад" FontSize="17" Height="48" Width="110" Background="#A2676C" Foreground="#D9CBC2" Margin="0,0,12,0" Click="backBtn_Click"/>
-            <Button x:Name="nextFuncBtn" Content="Следующая функция" FontSize="17" Height="48" Width="200" Background="#3C507D" Foreground="#D9CBC2" Click="nextFuncBtn_Click"/>
+            <Button x:Name="backBtn" Content="Назад" FontSize="17" Height="48" Width="110" Background="#A2676C" Foreground="#D9CBC2" Margin="0,0,12,0" Click="backBtn_Click" ToolTip="Вернуться к предыдущей функции"/>
+            <Button x:Name="nextFuncBtn" Content="Следующая функция" FontSize="17" Height="48" Width="200" Background="#3C507D" Foreground="#D9CBC2" Click="nextFuncBtn_Click" ToolTip="Перейти к следующей функции"/>
         </StackPanel>
     </Grid>
 </Page>
