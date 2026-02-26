@@ -12,7 +12,7 @@
     <Grid>
         <TextBlock Text="Функция №3" FontSize="21" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#442D1C" Margin="0,25,0,0"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="backBtn" Content="Назад" FontSize="17" Height="50" Width="110" HorizontalAlignment="Center" Background="#6B212C" Foreground="#D9CBC2" Click="backBtn_Click"/>
+            <Button x:Name="backBtn" Content="Назад" FontSize="17" Height="50" Width="110" HorizontalAlignment="Center" Background="#A2676C" Foreground="#D9CBC2" Click="backBtn_Click"/>
         </StackPanel>
     </Grid>
 </Page>

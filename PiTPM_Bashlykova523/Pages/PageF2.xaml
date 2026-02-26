@@ -5,15 +5,61 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PiTPM_Bashlykova523.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="460" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="800"
       Background="#D2E2EC"
       Title="PageF2">
 
     <Grid>
-        <TextBlock Text="Функция №2" FontSize="21" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#442D1C" Margin="0,25,0,0"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="backBtn" Content="Назад" FontSize="17" Height="50" Width="110" HorizontalAlignment="Center" Background="#6B212C" Foreground="#D9CBC2" Click="backBtn_Click"/>
-            <Button x:Name="nextFuncBtn" Content="Следующая функция" FontSize="17" Height="50" Width="200" HorizontalAlignment="Center" Margin="20" Background="#3C507D" Foreground="#D9CBC2" Click="nextFuncBtn_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Функция №2" FontSize="21" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#442D1C" Margin="0,18,0,6"/>
+        <Image Grid.Row="1" Source="/Images/func2.png" Stretch="Uniform" Width="480" Height="130" HorizontalAlignment="Center" Margin="0,0,0,8"/>
+
+        <Border Grid.Row="2" Padding="10" Margin="40,0" CornerRadius="6" Background="#F7F2EE" BorderBrush="#3A2119" BorderThickness="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" VerticalAlignment="Top">
+                    <TextBlock Text="x:" FontSize="19" Foreground="#442D1C" HorizontalAlignment="Right" Margin="0,15,10,6"/>
+                    <TextBlock Text="b:" FontSize="19" Foreground="#442D1C" HorizontalAlignment="Right" Margin="0,6,10,6"/>
+                    <TextBlock Text="f(x):" FontSize="19" Foreground="#442D1C" HorizontalAlignment="Right" Margin="0,20,10,4"/>
+                    <TextBlock Text="Ответ:   g =" FontSize="19" FontWeight="Bold" Foreground="#442D1C" HorizontalAlignment="Right" Margin="20,100,6,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Top">
+                    <TextBox x:Name="xEnterTB" FontSize="17" Height="30" Margin="0,15,0,6"/>
+                    <TextBox x:Name="bEnterTB" FontSize="17" Height="30" Margin="0,4,0,6"/>
+
+                    <Border Padding="6" Background="#EED5D2" BorderBrush="#3A2119" BorderThickness="1" CornerRadius="5" Margin="0,15,0,6">
+                        <StackPanel>
+                            <RadioButton x:Name="shFuncRB" Content="sh(x)" FontSize="16" Foreground="#442D1C" Margin="0,2"/>
+                            <RadioButton x:Name="x2FuncRB" Content="x²" FontSize="16" Foreground="#442D1C" Margin="0,2"/>
+                            <RadioButton x:Name="exFuncRB" Content="eˣ" FontSize="16" Foreground="#442D1C" Margin="0,2"/>
+                        </StackPanel>
+                    </Border>
+
+                    <TextBox x:Name="ansTB" FontSize="17" Height="34" Margin="0,30,0,0" IsReadOnly="True"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" VerticalAlignment="Top" Margin="30,40,0,0">
+                    <Button x:Name="countBtn" Content="Вычислить" FontSize="16" Height="45" Width="120" Margin="0,40,0,55" Background="#64854C" Foreground="#D9CBC2" Click="countBtn_Click"/>
+                    <Button x:Name="clearBtn" Content="Очистить" FontSize="16" Height="45" Width="120" Background="#6B212C" Foreground="#D9CBC2" Click="clearBtn_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+            <Button x:Name="backBtn" Content="Назад" FontSize="17" Height="48" Width="110" Background="#A2676C" Foreground="#D9CBC2" Margin="0,0,12,0" Click="backBtn_Click"/>
+            <Button x:Name="nextFuncBtn" Content="Следующая функция" FontSize="17" Height="48" Width="200" Background="#3C507D" Foreground="#D9CBC2" Click="nextFuncBtn_Click"/>
         </StackPanel>
     </Grid>
 </Page>

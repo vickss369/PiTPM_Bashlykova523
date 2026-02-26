@@ -20,7 +20,7 @@
         <TextBlock Grid.Row="0" Text="Функция №1" FontSize="21" FontWeight="Bold" Foreground="#442D1C" HorizontalAlignment="Center" Margin="0,15,0,5"/>
         <Image Grid.Row="1" Source="/Images/func1.png" Stretch="Uniform" Width="600" Height="90" HorizontalAlignment="Center" Margin="0,0,0,8"/>
 
-        <Border Grid.Row="2" Padding="8" Margin="40,0" CornerRadius="10" Background="#F7F2EE">
+        <Border Grid.Row="2" Padding="8" Margin="40,0" CornerRadius="5" Background="#F7F2EE" BorderBrush="#3A2119" BorderThickness="2">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
