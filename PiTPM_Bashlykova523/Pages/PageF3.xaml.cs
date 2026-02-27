@@ -29,5 +29,15 @@ namespace PiTPM_Bashlykova523.Pages
         {
             NavigationService.GoBack();
         }
+
+        private void countBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void clearBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

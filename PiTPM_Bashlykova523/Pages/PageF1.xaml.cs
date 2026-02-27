@@ -52,7 +52,26 @@ namespace PiTPM_Bashlykova523.Pages
 
         private void EnterTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !char.IsDigit(e.Text[0]);
+            TextBox tb = sender as TextBox;
+            char ch = e.Text[0];
+
+            if (char.IsDigit(ch))
+            {
+                e.Handled = false;
+                return;
+            }
+
+            if (ch == ',')
+            {
+                if (tb.Text.Contains(','))
+                    e.Handled = true;
+                else
+                    e.Handled = false;
+
+                return;
+            }
+
+            e.Handled = true;
         }
 
         private void countBtn_Click(object sender, RoutedEventArgs e)
