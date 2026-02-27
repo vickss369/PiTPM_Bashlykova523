@@ -23,11 +23,55 @@ namespace PiTPM_Bashlykova523.Pages
         public PageF3()
         {
             InitializeComponent();
+            buttonEnabled();
         }
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void buttonEnabled()
+        {
+            if (!string.IsNullOrWhiteSpace(x0EnterTB.Text) && !string.IsNullOrWhiteSpace(xkEnterTB.Text) && !string.IsNullOrWhiteSpace(dxEnterTB.Text) && !string.IsNullOrWhiteSpace(dEnterTB.Text))
+            {
+                countBtn.IsEnabled = true;
+                clearBtn.IsEnabled = true;
+            }
+            else
+            {
+                countBtn.IsEnabled = false;
+                clearBtn.IsEnabled = false;
+            }
+        }
+
+        private void EnterTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            buttonEnabled();
+        }
+
+        private void EnterTB_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            char ch = e.Text[0];
+
+            if (char.IsDigit(ch))
+            {
+                e.Handled = false;
+                return;
+            }
+
+            if (ch == ',')
+            {
+                if (tb.Text.Contains(','))
+                    e.Handled = true;
+                else
+                    e.Handled = false;
+
+                return;
+            }
+
+            e.Handled = true;
         }
 
         private void countBtn_Click(object sender, RoutedEventArgs e)
@@ -37,7 +81,13 @@ namespace PiTPM_Bashlykova523.Pages
 
         private void clearBtn_Click(object sender, RoutedEventArgs e)
         {
+            x0EnterTB.Text = "";
+            xkEnterTB.Text = "";
+            dxEnterTB.Text = "";
+            dEnterTB.Text = "";
+            resultTB.Text = "";
 
+            //Func3Chart.Series[0].Points.Clear();
         }
     }
 }

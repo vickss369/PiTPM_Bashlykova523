@@ -39,11 +39,11 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="0,10,0,0">
-                    <TextBox x:Name="x0TB" Height="28" FontSize="16" ToolTip="Введите начало отрезка x₀"/>
-                    <TextBox x:Name="xkTB" Height="28" FontSize="16" Margin="0,10,0,0" ToolTip="Введите конец отрезка xk"/>
-                    <TextBox x:Name="dxTB" Height="28" FontSize="16" Margin="0,8,0,10" ToolTip="Введите шаг dx"/>
-                    <TextBox x:Name="dTB" Height="28" FontSize="16" ToolTip="Введите параметр d функции"/>
-                    <TextBox x:Name="resultTB" Height="160" FontSize="15" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" IsReadOnly="True" TextWrapping="Wrap" Margin="0,25,0,0" ToolTip="Список значений x и y"/>
+                    <TextBox x:Name="x0EnterTB" Height="28" FontSize="17" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput" ToolTip="Введите начало отрезка x₀"/>
+                    <TextBox x:Name="xkEnterTB" Height="28" FontSize="17" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput" Margin="0,10,0,0" ToolTip="Введите конец отрезка xk"/>
+                    <TextBox x:Name="dxEnterTB" Height="28" FontSize="17" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput" Margin="0,8,0,10" ToolTip="Введите шаг dx"/>
+                    <TextBox x:Name="dEnterTB" Height="28" FontSize="17" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput" ToolTip="Введите параметр d функции"/>
+                    <TextBox x:Name="resultTB" Height="160" FontSize="17" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" IsReadOnly="True" TextWrapping="Wrap" Margin="0,25,0,0" ToolTip="Список значений x и y"/>
                 </StackPanel>
 
                 <Grid Grid.Column="2">
@@ -55,7 +55,7 @@
                     <Border Grid.Row="0" Margin="10,0,0,8" BorderBrush="#3A2119" BorderThickness="1" Background="#FFFFFF">
 
                         <wf:WindowsFormsHost Margin="5">
-                            <charts:Chart x:Name="FuncChart">
+                            <charts:Chart x:Name="Func3Chart">
                                 <charts:Chart.Legends>
                                     <charts:Legend/>
                                 </charts:Chart.Legends>
