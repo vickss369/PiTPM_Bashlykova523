@@ -28,7 +28,8 @@ namespace PiTPM_Bashlykova523.Pages
 
         private void buttonEnabled()
         {
-            if (!string.IsNullOrWhiteSpace(xEnterTB.Text) && !string.IsNullOrWhiteSpace(bEnterTB.Text) && 
+            if (!string.IsNullOrWhiteSpace(xEnterTB.Text) && xEnterTB.Text.Any(char.IsDigit) &&
+                !string.IsNullOrWhiteSpace(bEnterTB.Text) && bEnterTB.Text.Any(char.IsDigit) && 
                 (shFuncRB.IsChecked == true || x2FuncRB.IsChecked == true || exFuncRB.IsChecked == true))
             {
                 countBtn.IsEnabled = true;
@@ -64,11 +65,13 @@ namespace PiTPM_Bashlykova523.Pages
 
             if (ch == ',')
             {
-                if (tb.Text.Contains(','))
-                    e.Handled = true;
-                else
-                    e.Handled = false;
+                e.Handled = tb.Text.Contains(',');
+                return;
+            }
 
+            if (ch == '-')
+            {
+                e.Handled = tb.Text.Contains('-') || tb.SelectionStart != 0;
                 return;
             }
 
