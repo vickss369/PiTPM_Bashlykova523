@@ -86,12 +86,6 @@ namespace PiTPM_Bashlykova523.Pages
                 return;
             }
 
-            if (char.IsWhiteSpace(ch))
-            {
-                e.Handled = true;
-                return;
-            }
-
             e.Handled = true;
         }
 
@@ -130,7 +124,7 @@ namespace PiTPM_Bashlykova523.Pages
             if (pointCount > 10000)
             {
                 var result = MessageBox.Show(
-                    $"Количество точек для построения графика очень большое ({pointCount:F0}). Это может занять много времени.\nПродолжить?",
+                    $"Количество точек для построения графика очень большое ({pointCount:F0}). Это может привести к зависанию программыл.\nПродолжить?",
                     "Предупреждение",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Warning);

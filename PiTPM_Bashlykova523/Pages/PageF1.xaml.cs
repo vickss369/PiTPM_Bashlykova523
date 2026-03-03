@@ -75,12 +75,6 @@ namespace PiTPM_Bashlykova523.Pages
                 return;
             }
 
-            if (e.Text.Contains(" "))
-            {
-                e.Handled = true;
-                return;
-            }
-
             e.Handled = true;
         }
 
