@@ -75,6 +75,12 @@ namespace PiTPM_Bashlykova523.Pages
                 return;
             }
 
+            if (char.IsWhiteSpace(ch))
+            {
+                e.Handled = true;
+                return;
+            }
+
             e.Handled = true;
         }
 
@@ -90,8 +96,8 @@ namespace PiTPM_Bashlykova523.Pages
 
         private void countBtn_Click(object sender, RoutedEventArgs e)
         {
-            double x = Convert.ToDouble(xEnterTB.Text);
-            double b = Convert.ToDouble(bEnterTB.Text);
+            double x = Convert.ToDouble(xEnterTB.Text.Replace(" ", ""));
+            double b = Convert.ToDouble(bEnterTB.Text.Replace(" ", ""));
             double ans;
 
             string selectedFunc = "";

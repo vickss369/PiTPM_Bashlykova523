@@ -75,16 +75,37 @@ namespace PiTPM_Bashlykova523.Pages
                 return;
             }
 
+            if (e.Text.Contains(" "))
+            {
+                e.Handled = true;
+                return;
+            }
+
             e.Handled = true;
         }
 
         private void countBtn_Click(object sender, RoutedEventArgs e)
         {
-            double x = Convert.ToDouble(xEnterTB.Text);
-            double y = Convert.ToDouble(yEnterTB.Text);
-            double z = Convert.ToDouble(zEnterTB.Text);
+            double x = Convert.ToDouble(xEnterTB.Text.Replace(" ", ""));
+            double y = Convert.ToDouble(yEnterTB.Text.Replace(" ", ""));
+            double z = Convert.ToDouble(zEnterTB.Text.Replace(" ", ""));
 
-            double ans = Math.Sqrt(10 * (Math.Pow(x, 1 / 3) + Math.Pow(x, y + 2))) * (Math.Pow(Math.Asin(z), 2) - Math.Abs(x - y));
+            if (z < -1 || z > 1)
+            {
+                MessageBox.Show("Арксинус определён только для значений от -1 до 1!", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
+                zEnterTB.Focus();
+                zEnterTB.SelectAll();
+                return;
+            }
+
+            double sqrtExpression = 10 * (Math.Pow(x, 1.0 / 3.0) + Math.Pow(x, y + 2));
+            if (sqrtExpression < 0)
+            {
+                MessageBox.Show("Подкоренное выражение не должно быть отрицательным!", "Ошибка вычисления", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            double ans = Math.Sqrt(sqrtExpression) * (Math.Pow(Math.Asin(z), 2) - Math.Abs(x - y));
             ansTB.Text = ans.ToString();
         }
 

@@ -46,8 +46,7 @@ namespace PiTPM_Bashlykova523.Pages
             if (!string.IsNullOrWhiteSpace(x0EnterTB.Text) && x0EnterTB.Text.Any(char.IsDigit) &&
                 !string.IsNullOrWhiteSpace(xkEnterTB.Text) && xkEnterTB.Text.Any(char.IsDigit) &&
                 !string.IsNullOrWhiteSpace(dxEnterTB.Text) && dxEnterTB.Text.Any(char.IsDigit) &&
-                !string.IsNullOrWhiteSpace(dEnterTB.Text) && dEnterTB.Text.Any(char.IsDigit) &&
-                !string.IsNullOrWhiteSpace(xEnterTB.Text) && xEnterTB.Text.Any(char.IsDigit))
+                !string.IsNullOrWhiteSpace(dEnterTB.Text) && dEnterTB.Text.Any(char.IsDigit))
             {
                 countBtn.IsEnabled = true;
                 clearBtn.IsEnabled = true;
@@ -87,40 +86,48 @@ namespace PiTPM_Bashlykova523.Pages
                 return;
             }
 
+            if (char.IsWhiteSpace(ch))
+            {
+                e.Handled = true;
+                return;
+            }
+
             e.Handled = true;
         }
 
         private void countBtn_Click(object sender, RoutedEventArgs e)
         {
-            double x0 = Convert.ToDouble(x0EnterTB.Text);
-            double xk = Convert.ToDouble(xkEnterTB.Text);
-            double dx = Convert.ToDouble(dxEnterTB.Text);
-            double x = Convert.ToDouble(xEnterTB.Text);
-            double d = Convert.ToDouble(dEnterTB.Text);
+            double x0 = Convert.ToDouble(x0EnterTB.Text.Replace(" ", ""));
+            double xk = Convert.ToDouble(xkEnterTB.Text.Replace(" ", ""));
+            double dx = Convert.ToDouble(dxEnterTB.Text.Replace(" ", ""));
+            double d = Convert.ToDouble(dEnterTB.Text.Replace(" ", ""));
 
             if (x0 >= xk)
             {
                 MessageBox.Show("Начало отрезка должно быть меньше конца отрезка!", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
+                x0EnterTB.Focus();
+                x0EnterTB.SelectAll();
                 return;
             }
+
             if (dx == 0)
             {
-                MessageBox.Show("Приращение не должно быть равно нулю!", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Шаг приращения не должен быть равен нулю!", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
+                dxEnterTB.Focus();
+                dxEnterTB.SelectAll();
                 return;
             }
-            if ((x < x0 && x < xk) || (x > x0 && x > xk))
+
+            if (Math.Abs(dx) > Math.Abs(xk - x0))
             {
-                MessageBox.Show("x должен находиться внутри заданного отрезка!", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-            if (x == 0)
-            {
-                MessageBox.Show("Деление на ноль недопустимо!", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Шаг приращения не должен превышать длину заданного интервала!", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
+                dxEnterTB.Focus();
+                dxEnterTB.SelectAll();
                 return;
             }
 
             double pointCount = Math.Abs((xk - x0) / dx) + 1;
-            if (pointCount > 100000)
+            if (pointCount > 10000)
             {
                 var result = MessageBox.Show(
                     $"Количество точек для построения графика очень большое ({pointCount:F0}). Это может занять много времени.\nПродолжить?",
@@ -135,9 +142,16 @@ namespace PiTPM_Bashlykova523.Pages
             resultTB.Text = "";
             Func3Chart.Series[0].Points.Clear();
 
-            for (double xi = x0; (dx > 0 ? xi <= xk : xi >= xk); xi += dx)
+            for (double xi = x0; xi <= xk; xi += dx)
             {
+                if (xi == 0)
+                {
+                    MessageBox.Show("При x = 0 происходит деление на ноль. Построение остановлено.", "Ошибка вычисления", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
                 double yi = Math.Pow(xi, 2) + Math.Tan(5 * xi + d / xi);
+
                 resultTB.AppendText($"x = {xi:F4}\ny = {yi:F4}\n\n");
                 Func3Chart.Series[0].Points.AddXY(xi, yi);
             }
@@ -148,7 +162,6 @@ namespace PiTPM_Bashlykova523.Pages
             x0EnterTB.Text = "";
             xkEnterTB.Text = "";
             dxEnterTB.Text = "";
-            xEnterTB.Text = "";
             dEnterTB.Text = "";
             resultTB.Text = "";
 
