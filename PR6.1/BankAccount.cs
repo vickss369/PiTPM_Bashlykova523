@@ -41,7 +41,7 @@ namespace PR6._1
                 throw new ArgumentOutOfRangeException("amount");
             }
 
-            m_balance += amount;
+            m_balance -= amount;
         }
 
         public void Credit(double amount)
