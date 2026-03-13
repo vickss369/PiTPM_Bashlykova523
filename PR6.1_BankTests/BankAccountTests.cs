@@ -44,8 +44,19 @@ namespace PR6._1_BankTests
             double debitAmount = 23.00;
             BankAccount account = new BankAccount("Mr. Roman Abramovich", beginningBalance);
 
-            // Act and assert
-            Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => account.Debit(debitAmount));
+            // Act
+            try
+            {
+                account.Debit(debitAmount);
+            }
+            catch (System.ArgumentOutOfRangeException e)
+            {
+                // Assert
+                StringAssert.Contains(e.Message, BankAccount.DebitAmountExceedsBalanceMessage);
+                return;
+            }
+
+            Assert.Fail("The expected exception was not thrown.");
         }
     }
 }
