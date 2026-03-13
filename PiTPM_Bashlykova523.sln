@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiTPM_Bashlykova523", "PiTPM_Bashlykova523\PiTPM_Bashlykova523.csproj", "{37316C3B-1E1E-4D47-8C83-ED7A98D5DD5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PR6.1_Bank", "PR6.1\PR6.1_Bank.csproj", "{C888463A-11E8-4A58-AED1-F05369ABC149}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{37316C3B-1E1E-4D47-8C83-ED7A98D5DD5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37316C3B-1E1E-4D47-8C83-ED7A98D5DD5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37316C3B-1E1E-4D47-8C83-ED7A98D5DD5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C888463A-11E8-4A58-AED1-F05369ABC149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C888463A-11E8-4A58-AED1-F05369ABC149}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C888463A-11E8-4A58-AED1-F05369ABC149}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C888463A-11E8-4A58-AED1-F05369ABC149}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
