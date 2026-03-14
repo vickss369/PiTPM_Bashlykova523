@@ -58,5 +58,51 @@ namespace PR6._1_BankTests
 
             Assert.Fail("The expected exception was not thrown.");
         }
+
+
+        [TestMethod]
+        public void Credit_WithValidAmount_UpdatesBalance()
+        {
+            // Arrange
+            double beginningBalance = 11.99;
+            double creditAmount = 5.00;
+            double expected = 16.99;
+            BankAccount account = new BankAccount("Mr. Roman Abramovich", beginningBalance);
+
+            // Act
+            account.Credit(creditAmount);
+
+            // Assert
+            double actual = account.Balance;
+            Assert.AreEqual(expected, actual, 0.001, "Account not credited correctly");
+        }
+
+        [TestMethod]
+        public void Credit_WhenAmountIsLessThanZero_ShouldThrowArgumentOutOfRange()
+        {
+            // Arrange
+            double beginningBalance = 11.99;
+            double creditAmount = -5.00;
+            BankAccount account = new BankAccount("Mr. Roman Abramovich", beginningBalance);
+
+            // Act & Assert
+            Assert.ThrowsException<System.ArgumentOutOfRangeException>(() => account.Credit(creditAmount));
+        }
+
+        [TestMethod]
+        public void Credit_WithZeroAmount_DoesNotChangeBalance()
+        {
+            // Arrange
+            double beginningBalance = 11.99;
+            double creditAmount = 0.0;
+            BankAccount account = new BankAccount("Mr. Roman Abramovich", beginningBalance);
+
+            // Act
+            account.Credit(creditAmount);
+
+            // Assert
+            double actual = account.Balance;
+            Assert.AreEqual(beginningBalance, actual, 0.001, "Balance should not change when credit is zero");
+        }
     }
 }

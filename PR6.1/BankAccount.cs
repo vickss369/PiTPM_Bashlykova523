@@ -67,5 +67,4 @@ namespace PR6._1
             Console.ReadLine();
         }
     }
-
 }
