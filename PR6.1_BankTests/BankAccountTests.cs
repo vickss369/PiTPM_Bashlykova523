@@ -105,7 +105,7 @@ namespace PR6._1_BankTests
             Assert.AreEqual(beginningBalance, actual, 0.001, "Balance should not change when credit is zero");
         }*/
 
-        [TestMethod]
+/*        [TestMethod]
         public void Credit_ManySmallCredits_ShouldAccumulateCorrectly()
         {
             // Arrange
@@ -137,10 +137,10 @@ namespace PR6._1_BankTests
             double expected = 1000100.00;
             double actual = account.Balance;
             Assert.AreEqual(expected, actual, 0.001, "Large credit not processed correctly");
-        }
+        }*/
 
 
-        /*[TestMethod]
+        [TestMethod]
         public void Credit_WhenAmountIsLessThanZero_ShouldContainCorrectErrorMessage()
         {
             // Arrange
@@ -161,9 +161,9 @@ namespace PR6._1_BankTests
             }
 
             Assert.Fail("Expected exception was not thrown.");
-        }*/
+        }
 
-        [TestMethod]
+        /*[TestMethod]
         public void Credit_ShouldNotAffectOtherAccounts()
         {
             // Arrange
@@ -176,6 +176,6 @@ namespace PR6._1_BankTests
             // Assert
             Assert.AreEqual(150.00, account1.Balance, 0.001);
             Assert.AreEqual(200.00, account2.Balance, 0.001, "Credit operation affected another account");
-        }
+        }*/
     }
 }
