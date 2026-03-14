@@ -105,7 +105,7 @@ namespace PR6._1_BankTests
             Assert.AreEqual(beginningBalance, actual, 0.001, "Balance should not change when credit is zero");
         }*/
 
-/*        [TestMethod]
+        /*[TestMethod]
         public void Credit_ManySmallCredits_ShouldAccumulateCorrectly()
         {
             // Arrange
