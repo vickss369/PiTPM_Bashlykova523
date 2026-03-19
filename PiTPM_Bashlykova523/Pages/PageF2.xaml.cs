@@ -88,57 +88,77 @@ namespace PiTPM_Bashlykova523.Pages
             NavigationService.Navigate(new PageF3());
         }
 
+        /// <summary>
+        /// Вычисляет значение функции в зависимости от выбранного режима.
+        /// </summary>
+        /// <param name="x">Значение X</param>
+        /// <param name="b">Значение B</param>
+        /// <param name="chosenFunc">Выбранная функция: "sh", "x2", "exp"</param>
+        /// <param name="ans">Результат вычисления</param>
+        /// <param name="error">Сообщение об ошибке</param>
+        /// <returns>True, если вычисление прошло успешно</returns>
+        public bool CalculateF2(double x, double b, string chosenFunc, out double ans, out string error)
+        {
+            ans = 0;
+            error = string.Empty;
+
+            if (string.IsNullOrEmpty(chosenFunc))
+            {
+                error = "Функция не выбрана!";
+                return false;
+            }
+
+            double fx;
+
+            switch (chosenFunc)
+            {
+                case "sh": fx = Math.Sinh(x); break;
+
+                case "x2": fx = Math.Pow(x, 2); break;
+
+                case "exp": fx = Math.Exp(x); break;
+
+                default: error = "Неизвестная функция!"; return false;
+            }
+
+            double xb = x * b;
+            if (xb > 0.5 && xb < 10)
+            {
+                ans = Math.Exp(fx - Math.Abs(b));
+            }
+            else if (xb > 0.1 && xb < 0.5)
+            {
+                ans = Math.Sqrt(Math.Abs(fx + b));
+            }
+            else
+            {
+                ans = 2 * Math.Pow(fx, 2);
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Обработчик кнопки "Вычислить"
+        /// </summary>
         private void countBtn_Click(object sender, RoutedEventArgs e)
         {
             double x = Convert.ToDouble(xEnterTB.Text.Replace(" ", ""));
             double b = Convert.ToDouble(bEnterTB.Text.Replace(" ", ""));
-            double ans;
 
-            string selectedFunc = "";
-            if (shFuncRB.IsChecked == true) selectedFunc = "sh(x)";
-            else if (x2FuncRB.IsChecked == true) selectedFunc = "x²";
-            else if (exFuncRB.IsChecked == true) selectedFunc = "eˣ";
+            string chosenFunc = "";
+            if (shFuncRB.IsChecked == true) chosenFunc = "sh";
+            else if (x2FuncRB.IsChecked == true) chosenFunc = "x2";
+            else if (exFuncRB.IsChecked == true) chosenFunc = "exp";
+
+            if (CalculateF2(x, b, chosenFunc, out double ans, out string error))
+            {
+                ansTB.Text = ans.ToString();
+            }
             else
             {
-                MessageBox.Show("Выберите функцию!");
-                return;
+                MessageBox.Show(error, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-
-            switch (selectedFunc)
-            {
-                case "sh(x)":
-                    if (x * b > 0.5 && x * b < 10)
-                        ans = Math.Exp(Math.Sinh(x) - Math.Abs(b));
-                    else if (x * b > 0.1 && x * b < 0.5)
-                        ans = Math.Sqrt(Math.Abs(Math.Sinh(x) + b));
-                    else
-                        ans = 2 * Math.Pow(Math.Sinh(x), 2);
-                    break;
-
-                case "x²":
-                    if (x * b > 0.5 && x * b < 10)
-                        ans = Math.Exp(Math.Pow(x, 2) - Math.Abs(b));
-                    else if (x * b > 0.1 && x * b < 0.5)
-                        ans = Math.Sqrt(Math.Abs(Math.Pow(x, 2) + b));
-                    else
-                        ans = 2 * Math.Pow(Math.Pow(x, 2), 2);
-                    break;
-
-                case "eˣ":
-                    if (x * b > 0.5 && x * b < 10)
-                        ans = Math.Exp(Math.Exp(x) - Math.Abs(b));
-                    else if (x * b > 0.1 && x * b < 0.5)
-                        ans = Math.Sqrt(Math.Abs(Math.Exp(x) + b));
-                    else
-                        ans = 2 * Math.Pow(Math.Exp(x), 2);
-                    break;
-
-                default:
-                    ans = 0;
-                    break;
-            }
-
-            ansTB.Text = ans.ToString();
         }
 
         private void clearBtn_Click(object sender, RoutedEventArgs e)
