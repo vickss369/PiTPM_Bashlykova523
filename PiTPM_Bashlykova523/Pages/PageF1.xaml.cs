@@ -78,29 +78,55 @@ namespace PiTPM_Bashlykova523.Pages
             e.Handled = true;
         }
 
+        /// <summary>
+        /// Выполняет вычисление функции 1.
+        /// </summary>
+        /// <param name="x">Значение X</param>
+        /// <param name="y">Значение Y</param>
+        /// <param name="z">Значение Z</param>
+        /// <param name="ans">Результат вычисления</param>
+        /// <param name="error">Сообщение об ошибке</param>
+        /// <returns>True, если вычисление успешно, иначе False</returns>
+        public bool CalculateF1(double x, double y, double z, out double ans, out string error)
+        {
+            ans = 0;
+            error = string.Empty;
+
+            if (z < -1 || z > 1)
+            {
+                error = "Арксинус определён только для значений от -1 до 1!";
+                return false;
+            }
+
+            double sqrtExpression = 10 * (Math.Pow(x, 1.0 / 3.0) + Math.Pow(x, y + 2));
+
+            if (sqrtExpression < 0)
+            {
+                error = "Подкоренное выражение не должно быть отрицательным!";
+                return false;
+            }
+
+            ans = Math.Sqrt(sqrtExpression) * (Math.Pow(Math.Asin(z), 2) - Math.Abs(x - y));
+            return true;
+        }
+
+        /// <summary>
+        /// Обработчик кнопки "Вычислить"
+        /// </summary>
         private void countBtn_Click(object sender, RoutedEventArgs e)
         {
             double x = Convert.ToDouble(xEnterTB.Text.Replace(" ", ""));
             double y = Convert.ToDouble(yEnterTB.Text.Replace(" ", ""));
             double z = Convert.ToDouble(zEnterTB.Text.Replace(" ", ""));
 
-            if (z < -1 || z > 1)
+            if (CalculateF1(x, y, z, out double result, out string error))
             {
-                MessageBox.Show("Арксинус определён только для значений от -1 до 1!", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
-                zEnterTB.Focus();
-                zEnterTB.SelectAll();
-                return;
+                ansTB.Text = result.ToString();
             }
-
-            double sqrtExpression = 10 * (Math.Pow(x, 1.0 / 3.0) + Math.Pow(x, y + 2));
-            if (sqrtExpression < 0)
+            else
             {
-                MessageBox.Show("Подкоренное выражение не должно быть отрицательным!", "Ошибка вычисления", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                MessageBox.Show(error, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-
-            double ans = Math.Sqrt(sqrtExpression) * (Math.Pow(Math.Asin(z), 2) - Math.Abs(x - y));
-            ansTB.Text = ans.ToString();
         }
 
         private void clearBtn_Click(object sender, RoutedEventArgs e)

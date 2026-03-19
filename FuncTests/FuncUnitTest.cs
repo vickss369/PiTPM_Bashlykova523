@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using PiTPM_Bashlykova523.Pages;
 
 namespace FuncTests
 {
@@ -14,6 +15,11 @@ namespace FuncTests
             Assert.AreNotEqual(res, 5);
             Assert.IsFalse(res > 5);
             Assert.IsTrue(res < 5);
+        }
+
+        [TestMethod]
+        public void TestFunc1() 
+        { 
         }
     }
 }
