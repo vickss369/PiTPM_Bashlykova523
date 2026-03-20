@@ -97,12 +97,12 @@ namespace PiTPM_Bashlykova523.Pages
         /// <param name="ans">Результат вычисления</param>
         /// <param name="error">Сообщение об ошибке</param>
         /// <returns>True, если вычисление прошло успешно</returns>
-        public bool CalculateF2(double x, double b, string chosenFunc, out double ans, out string error)
+        public bool CalculateF2(double x, double b, string selectedFunc, out double ans, out string error)
         {
             ans = 0;
             error = string.Empty;
 
-            if (string.IsNullOrEmpty(chosenFunc))
+            if (string.IsNullOrEmpty(selectedFunc))
             {
                 error = "Функция не выбрана!";
                 return false;
@@ -110,7 +110,7 @@ namespace PiTPM_Bashlykova523.Pages
 
             double fx;
 
-            switch (chosenFunc)
+            switch (selectedFunc)
             {
                 case "sh": fx = Math.Sinh(x); break;
 
@@ -146,12 +146,12 @@ namespace PiTPM_Bashlykova523.Pages
             double x = Convert.ToDouble(xEnterTB.Text.Replace(" ", ""));
             double b = Convert.ToDouble(bEnterTB.Text.Replace(" ", ""));
 
-            string chosenFunc = "";
-            if (shFuncRB.IsChecked == true) chosenFunc = "sh";
-            else if (x2FuncRB.IsChecked == true) chosenFunc = "x2";
-            else if (exFuncRB.IsChecked == true) chosenFunc = "exp";
+            string selectedFunc = "";
+            if (shFuncRB.IsChecked == true) selectedFunc = "sh";
+            else if (x2FuncRB.IsChecked == true) selectedFunc = "x2";
+            else if (exFuncRB.IsChecked == true) selectedFunc = "exp";
 
-            if (CalculateF2(x, b, chosenFunc, out double ans, out string error))
+            if (CalculateF2(x, b, selectedFunc, out double ans, out string error))
             {
                 ansTB.Text = ans.ToString();
             }

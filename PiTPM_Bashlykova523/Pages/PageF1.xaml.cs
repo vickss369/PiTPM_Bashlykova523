@@ -126,6 +126,16 @@ namespace PiTPM_Bashlykova523.Pages
             else
             {
                 MessageBox.Show(error, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                if (error.Contains("Арксинус"))
+                {
+                    zEnterTB.Focus();
+                    zEnterTB.SelectAll();
+                }
+                else if (error.Contains("Подкоренное"))
+                {
+                    xEnterTB.Focus();
+                    xEnterTB.SelectAll();
+                }
             }
         }
 

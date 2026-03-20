@@ -163,6 +163,21 @@ namespace PiTPM_Bashlykova523.Pages
             else
             {
                 MessageBox.Show(error, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                if (error.Contains("Начало"))
+                {
+                    x0EnterTB.Focus();
+                    x0EnterTB.SelectAll();
+                }
+                else if (error.Contains("Шаг не должен быть равен нулю"))
+                {
+                    dxEnterTB.Focus();
+                    dxEnterTB.SelectAll();
+                }
+                else if (error.Contains("Шаг превышает"))
+                {
+                    dxEnterTB.Focus();
+                    dxEnterTB.SelectAll();
+                }
             }
         }
 
