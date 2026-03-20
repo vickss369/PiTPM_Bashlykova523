@@ -89,6 +89,59 @@ namespace PiTPM_Bashlykova523.Pages
             e.Handled = true;
         }
 
+        /// <summary>
+        /// Вычисляет значения функции y = x² + tan(5x + d/x) на интервале.
+        /// </summary>
+        /// <param name="x0">Начало интервала</param>
+        /// <param name="xk">Конец интервала</param>
+        /// <param name="dx">Шаг</param>
+        /// <param name="d">Параметр d</param>
+        /// <param name="result">Список точек (x, y)</param>
+        /// <param name="error">Сообщение об ошибке</param>
+        /// <returns>True, если вычисление успешно</returns>
+        public bool CalculateF3(double x0, double xk, double dx, double d,
+                              out List<(double x, double y)> result,
+                              out string error)
+        {
+            result = new List<(double, double)>();
+            error = string.Empty;
+
+            if (x0 >= xk)
+            {
+                error = "Начало отрезка должно быть меньше конца!";
+                return false;
+            }
+
+            if (dx == 0)
+            {
+                error = "Шаг не должен быть равен нулю!";
+                return false;
+            }
+
+            if (Math.Abs(dx) > Math.Abs(xk - x0))
+            {
+                error = "Шаг превышает длину интервала!";
+                return false;
+            }
+
+            for (double x = x0; x <= xk; x += dx)
+            {
+                if (x == 0)
+                {
+                    error = "Деление на ноль (x = 0)!";
+                    return false;
+                }
+
+                double y = Math.Pow(x, 2) + Math.Tan(5 * x + d / x);
+                result.Add((x, y));
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Обработчик кнопки "Вычислить"
+        /// </summary>
         private void countBtn_Click(object sender, RoutedEventArgs e)
         {
             double x0 = Convert.ToDouble(x0EnterTB.Text.Replace(" ", ""));
@@ -96,58 +149,20 @@ namespace PiTPM_Bashlykova523.Pages
             double dx = Convert.ToDouble(dxEnterTB.Text.Replace(" ", ""));
             double d = Convert.ToDouble(dEnterTB.Text.Replace(" ", ""));
 
-            if (x0 >= xk)
+            if (CalculateF3(x0, xk, dx, d, out var points, out string error))
             {
-                MessageBox.Show("Начало отрезка должно быть меньше конца отрезка!", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
-                x0EnterTB.Focus();
-                x0EnterTB.SelectAll();
-                return;
-            }
+                resultTB.Text = "";
+                Func3Chart.Series[0].Points.Clear();
 
-            if (dx == 0)
-            {
-                MessageBox.Show("Шаг приращения не должен быть равен нулю!", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
-                dxEnterTB.Focus();
-                dxEnterTB.SelectAll();
-                return;
-            }
-
-            if (Math.Abs(dx) > Math.Abs(xk - x0))
-            {
-                MessageBox.Show("Шаг приращения не должен превышать длину заданного интервала!", "Ошибка ввода", MessageBoxButton.OK, MessageBoxImage.Warning);
-                dxEnterTB.Focus();
-                dxEnterTB.SelectAll();
-                return;
-            }
-
-            double pointCount = Math.Abs((xk - x0) / dx) + 1;
-            if (pointCount > 10000)
-            {
-                var result = MessageBox.Show(
-                    $"Количество точек для построения графика очень большое ({pointCount:F0}). Это может привести к зависанию программыл.\nПродолжить?",
-                    "Предупреждение",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Warning);
-
-                if (result == MessageBoxResult.No)
-                    return;
-            }
-
-            resultTB.Text = "";
-            Func3Chart.Series[0].Points.Clear();
-
-            for (double xi = x0; xi <= xk; xi += dx)
-            {
-                if (xi == 0)
+                foreach (var p in points)
                 {
-                    MessageBox.Show("При x = 0 происходит деление на ноль. Построение остановлено.", "Ошибка вычисления", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
+                    resultTB.AppendText($"x = {p.x:F4}\ny = {p.y:F4}\n\n");
+                    Func3Chart.Series[0].Points.AddXY(p.x, p.y);
                 }
-
-                double yi = Math.Pow(xi, 2) + Math.Tan(5 * xi + d / xi);
-
-                resultTB.AppendText($"x = {xi:F4}\ny = {yi:F4}\n\n");
-                Func3Chart.Series[0].Points.AddXY(xi, yi);
+            }
+            else
+            {
+                MessageBox.Show(error, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
