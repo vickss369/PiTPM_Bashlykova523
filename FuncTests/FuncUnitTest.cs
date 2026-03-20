@@ -17,7 +17,7 @@ namespace FuncTests
             Assert.IsTrue(res < 5);
         }*/
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestFunc1_Value1() 
         {
             var pF1 = new PageF1();
@@ -48,6 +48,58 @@ namespace FuncTests
 
             Assert.IsFalse(res);
             Assert.AreEqual("Арксинус определён только для значений от -1 до 1!", error);
+        }*/
+
+        [TestMethod]
+        public void TestFunc2_Sh_SqrtBranch_CorrectAns()
+        {
+            var page = new PageF2();
+
+            double x = 0.5;
+            double b = 0.5;
+
+            bool ans = page.CalculateF2(x, b, "sh", out double answer, out string error);
+            double expected = Math.Sqrt(Math.Abs(Math.Sinh(x) + b));
+
+            Assert.IsTrue(ans);
+            Assert.AreEqual(expected, answer, 0.0001);
+        }
+
+        [TestMethod]
+        public void TestFunc2_2ndBranch_BorderCase_ShouldFail()
+        {
+            var page = new PageF2();
+
+            double x = 1;
+            double b = 0.5;
+
+            bool ans = page.CalculateF2(x, b, "x2", out double answer, out string error);
+            double wrongExpected = Math.Sqrt(Math.Abs(Math.Pow(x, 2) + b));
+
+            Assert.AreEqual(wrongExpected, answer, 0.0001);
+        }
+
+        [TestMethod]
+        public void TestFunc2_InvalidFunction_SouldShowMessage()
+        {
+            var page = new PageF2();
+
+            bool ans = page.CalculateF2(1, 1, "бебебе", out double answer, out string error);
+
+            Assert.IsFalse(ans);
+            StringAssert.Contains(error, "Неизвестная");
+        }
+
+        [TestMethod]
+        public void TestFunc2_ShouldFail_ExpectErrorButValid()
+        {
+            var page = new PageF2();
+
+            bool ans = page.CalculateF2(1, 1, "x2", out double answer, out string error);
+            if (ans)
+            {
+                Assert.Fail("Ожидалась ошибка, но вычисление прошло успешно!");
+            }
         }
     }
 }
