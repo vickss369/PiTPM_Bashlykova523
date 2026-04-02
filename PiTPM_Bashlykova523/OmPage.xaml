@@ -27,8 +27,8 @@
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,60">
-            <TextBox x:Name="voltageTB" FontSize="18" MinWidth="150" Height="35" Margin="0,0,10,20" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput"/>
-            <TextBox x:Name="resistTB" FontSize="18" MinWidth="150" Height="35" Margin="0,5,10,20" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput"/>
+            <TextBox x:Name="firstTB" FontSize="18" MinWidth="150" Height="35" Margin="0,0,10,20" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput"/>
+            <TextBox x:Name="secondTB" FontSize="18" MinWidth="150" Height="35" Margin="0,5,10,20" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput"/>
         </StackPanel>
 
         <Border Grid.Row="0" Grid.Column="2" BorderBrush="#3A2119" BorderThickness="2" CornerRadius="10" Background="#D9CBC2" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxWidth="270">
@@ -44,7 +44,7 @@
 
         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="60,30,0,60">
             <TextBlock x:Name="resTBL" Text="Сила тока = " FontSize="20" FontWeight="Bold" Foreground="#3A2119" Margin="0,0,5,30"/>
-            <TextBlock x:Name="ansmerTBL" Text="ответ" FontSize="20" Foreground="#3A2119" Margin="0,0,10,20"/>
+            <TextBlock x:Name="answerTBL" Text="ответ" FontSize="20" Foreground="#3A2119" Margin="0,0,10,20"/>
         </StackPanel>
 
         <Button x:Name="countBtn" Content="Вычислить" FontSize="20" FontWeight="Bold" Foreground="#3A2119" Background="#A86A65" Height="50" Width="140" HorizontalAlignment="Left" Margin="0,0,0,50" Grid.Row="1" Grid.Column="2" Click="countBtn_Click"/>
