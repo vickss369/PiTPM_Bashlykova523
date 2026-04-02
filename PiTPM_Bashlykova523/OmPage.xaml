@@ -1,0 +1,52 @@
+﻿<Page x:Class="PiTPM_Bashlykova523.OmPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PiTPM_Bashlykova523"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Background="#D2E2EC"
+      Title="OmPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="60,60,0,60">
+            <TextBlock x:Name="firstTBL" Text="Напряжение (Вольт)" FontSize="20" Foreground="#3A2119" Margin="0,0,10,30"/>
+            <TextBlock x:Name="secondTBL" Text="Сопротивление (Ом)" FontSize="20" Foreground="#3A2119" Margin="0,0,10,20"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,60">
+            <TextBox x:Name="voltageTB" FontSize="18" MinWidth="150" Height="35" Margin="0,0,10,20" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput"/>
+            <TextBox x:Name="resistTB" FontSize="18" MinWidth="150" Height="35" Margin="0,5,10,20" TextChanged="EnterTB_TextChanged" PreviewTextInput="EnterTB_PreviewTextInput"/>
+        </StackPanel>
+
+        <Border Grid.Row="0" Grid.Column="2" BorderBrush="#3A2119" BorderThickness="2" CornerRadius="10" Background="#D9CBC2" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxWidth="270">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock Text="Вычисляемая величина" FontSize="18" FontWeight="Bold" Foreground="#3A2119" Margin="15,10,10,5"/>
+                <StackPanel Margin="20,0,0,15">
+                    <RadioButton x:Name="amperageRB" Content="Сила тока" FontSize="18" Margin="3" Foreground="#3A2119" IsChecked="True" Checked="calculatedValue_Checked"/>
+                    <RadioButton x:Name="voltageRB" Content="Напряжение" FontSize="18" Margin="3" Foreground="#3A2119" Checked="calculatedValue_Checked"/>
+                    <RadioButton x:Name="resistRB" Content="Сопротивление" FontSize="18" Margin="3" Foreground="#3A2119" Checked="calculatedValue_Checked"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="60,30,0,60">
+            <TextBlock x:Name="resTBL" Text="Сила тока = " FontSize="20" FontWeight="Bold" Foreground="#3A2119" Margin="0,0,5,30"/>
+            <TextBlock x:Name="ansmerTBL" Text="ответ" FontSize="20" Foreground="#3A2119" Margin="0,0,10,20"/>
+        </StackPanel>
+
+        <Button x:Name="countBtn" Content="Вычислить" FontSize="20" FontWeight="Bold" Foreground="#3A2119" Background="#A86A65" Height="50" Width="140" HorizontalAlignment="Left" Margin="0,0,0,50" Grid.Row="1" Grid.Column="2" Click="countBtn_Click"/>
+    </Grid>
+</Page>

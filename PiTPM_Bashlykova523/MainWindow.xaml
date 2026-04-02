@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PiTPM_Bashlykova523"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Background="#D2E2EC" MinHeight="500" MinWidth="700"
+        Title="Применение закона Ома" Height="450" Width="800">
+    
     <Grid>
-        
+        <Frame x:Name="MainFrame" Source="OmPage.xaml" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
