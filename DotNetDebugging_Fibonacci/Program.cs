@@ -14,6 +14,14 @@ namespace DotNetDebugging_Fibonacci
             Console.WriteLine(result);
         }
 
+        /// <summary>
+        /// Выполняет вычисление последовательности Фибоначчи
+        /// </summary>
+        /// <param name="n">Номер требуемого числа Фибоначчи, включительно до которого идёт цикл</param>
+        /// <param name="n1">Первое число последовательности Фибоначчи</param>
+        /// <param name="n2">Второе число последовательности Фибоначчи</param>
+        /// <param name="sum">Результат вычисления следующего числа Фибоначчи</param>
+        /// <returns>Число последовательности Фибоначчи, заданное параметром n</returns>
         static int Fibonacci(int n)
         {
             Console.WriteLine("The output is: ");
