@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PiTPM_Bashlykova523"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Background="#D2E2EC"
+        MinHeight="500" MinWidth="750"
+        Title="Шифр Виженера" Height="450" Width="800">
+    
     <Grid>
-        
+        <Frame x:Name="MainFrame" Source="VigenerePage.xaml" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
