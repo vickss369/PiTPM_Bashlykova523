@@ -33,7 +33,7 @@ namespace VigenereCipherDecryptTests
             string encrypted = text.EncryptVigenere("пусто", " ");
             string decrypted = cipher.DecryptVigenere(encrypted, " ");
 
-            StringAssert.Contains("ключ не", decrypted.ToLower());
+            StringAssert.Contains(decrypted.ToLower(), "ключ не должны");
         }
 
         [TestMethod]

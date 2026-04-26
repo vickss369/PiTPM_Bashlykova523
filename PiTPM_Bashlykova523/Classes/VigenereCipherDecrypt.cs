@@ -7,15 +7,26 @@ using System.Threading.Tasks;
 namespace PiTPM_Bashlykova523.Classes
 {
     /// <summary>
-    /// Класс дешифрования методом Виженера.
+    /// Класс дешифрования текста методом Виженера.
+    /// Поддерживает русский (33 буквы с Ё) и английский алфавиты, сохраняет регистр букв и специальные символы.
     /// </summary>
     public class VigenereCipherDecrypt
     {
-        private const string RussianAlphabet = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+        private const string RussianAlphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
         private const string EnglishAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+        /// <summary>
+        /// Расшифровывает текст, зашифрованный методом Виженера.
+        /// </summary>
+        /// <param name="cipher">Зашифрованный текст.</param>
+        /// <param name="key">Ключ, использованный при шифровании.</param>
+        /// <returns>Исходный расшифрованный текст. Регистр исходных букв сохраняется, 
+        /// специальные символы (пробелы, знаки препинания) остаются без изменений и не влияют на сдвиги.</returns>
         public string DecryptVigenere(string cipher, string key)
         {
+            if (string.IsNullOrWhiteSpace(cipher) || string.IsNullOrWhiteSpace(key))
+                return "Ошибка: текст или ключ не должны быть пустыми";
+
             string result = "";
             key = key.ToUpper();
             int keyIndex = 0;
@@ -34,7 +45,7 @@ namespace PiTPM_Bashlykova523.Classes
                     int keyPos = alphabet.IndexOf(keyChar);
 
                     if (cipherPos == -1 || keyPos == -1) result += symbol;
-
+                    
                     else
                     {
                         int newPos = (cipherPos - keyPos + alphabet.Length) % alphabet.Length;

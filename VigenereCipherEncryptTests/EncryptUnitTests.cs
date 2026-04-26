@@ -22,14 +22,14 @@ namespace VigenereCipherEncryptTests
         public void TC03_WithSpaces_ShouldPreserveSpaces()
         {
             string result = cipher.EncryptVigenere("Поддержка и тестирование программных модулей", "ключ");
-            Assert.AreEqual("Щьнрпйщфкз и ьмпьцмьмйп гёьрьзмшёяьз мьзрпшйж", result);
+            Assert.AreEqual("Ъъвыпьевк ф рььюжзщнюеур нзщооччшлта шмыючгб", result);
         }
 
         [TestMethod]
         public void TC04_EmptyText_ShouldReturnErrorMessage()
         {
             string result = cipher.EncryptVigenere(" ", "пусто");
-            StringAssert.Contains("текст не", result.ToLower());
+            StringAssert.Contains(result.ToLower(), "текст");
         }
 
         [TestMethod]
@@ -37,16 +37,16 @@ namespace VigenereCipherEncryptTests
         {
             string result = cipher.EncryptVigenere("всем привет, меня зовут Вика!)", "вика");
 
-            StringAssert.Contains(",", result);
-            StringAssert.Contains("!", result);
-            StringAssert.Contains(")", result);
+            StringAssert.Contains(result, ",");
+            StringAssert.Contains(result, "!");
+            StringAssert.Contains(result, ")");
         }
 
         [TestMethod]
         public void TC07_LongKey_ShouldBeTrimmed()
         {
             var result = cipher.EncryptVigenere("пример", "ключевой");
-            Assert.AreEqual("суздмф", result);
+            Assert.AreEqual("ъьждйт", result);
         }
     }
 }

@@ -7,15 +7,26 @@ using System.Threading.Tasks;
 namespace PiTPM_Bashlykova523.Classes
 {
     /// <summary>
-    /// Класс шифрования методом Виженера.
+    /// Класс шифрования текста методом Виженера.
+    /// Поддерживает русский (33 буквы с Ё) и английский алфавиты, сохраняет регистр букв и специальные символы.
     /// </summary>
     public class VigenereCipherEncrypt
     {
-        private const string RussianAlphabet = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+        private const string RussianAlphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
         private const string EnglishAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+        /// <summary>
+        /// Шифрует текст с помощью шифра Виженера.
+        /// </summary>
+        /// <param name="text">Текст, который нужно зашифровать.</param>
+        /// <param name="key">Ключ шифрования.</param>
+        /// <returns>Зашифрованный текст. Регистр исходных букв сохраняется, 
+        /// специальные символы (пробелы, знаки препинания) остаются без изменений и не влияют на сдвиги.</returns>
         public string EncryptVigenere(string text, string key)
         {
+            if (string.IsNullOrWhiteSpace(text) || string.IsNullOrWhiteSpace(key))
+                return "Ошибка: текст или ключ не должны быть пустыми";
+
             string result = "";
             key = key.ToUpper();
             int keyIndex = 0;
